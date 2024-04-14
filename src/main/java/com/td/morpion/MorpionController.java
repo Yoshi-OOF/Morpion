@@ -1,5 +1,7 @@
 package com.td.morpion;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
@@ -8,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.event.Event;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 public class MorpionController {
@@ -21,6 +25,7 @@ public class MorpionController {
     static int PlayerTurn = 1;
     static int GameStatus = 0;
     static int[][] gameBoard = new int[3][3];
+    ArrayList<Button> buttonsCache = new ArrayList<Button>();
 
     public void setModalDialog(Stage modal) {
         this.modalDialog = modal;
@@ -47,6 +52,10 @@ public class MorpionController {
             for (int j = 0; j < 3; j++) {
                 gameBoard[i][j] = 0;
             }
+        }
+
+        if (!buttonsCache.isEmpty()) {
+            buttonsCache.forEach(button -> button.setText(""));
         }
     }
 
@@ -134,15 +143,12 @@ public class MorpionController {
             PlayerTurn = 2;
 
             if (player2IsAI) {
-                ArrayList<Button> buttons = new ArrayList<Button>();
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                        String buttonId = "button" + i + j;
-                        Button button = (Button) theButton.getScene().lookup("#" + buttonId);
-                        buttons.add(button);
-                    }
+                buttonsCache = new ArrayList<Button>();
+                for (int i = 0; i < 9; i++) {
+                    Button button = (Button) theButton.getScene().lookup("#Button" + i);
+                    buttonsCache.add(button);
                 }
-                BotController.PlayBot(buttons);
+                BotController.PlayBot(buttonsCache);
             }
         } else {
             theButton.setText("O");
