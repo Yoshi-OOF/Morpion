@@ -111,6 +111,10 @@ public class MorpionController {
             StartGame();
         }
 
+        if (PlayerTurn == 3) {
+            PlayerTurn = (int) (Math.random() * 2) + 1;
+        }
+
         String ButtonIdString = theButton.getId().substring(6);
         int ButtonId = Integer.parseInt(ButtonIdString);
         int x = ButtonId / 3;
