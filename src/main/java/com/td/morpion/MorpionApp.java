@@ -4,17 +4,40 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.Modality;
 
 import java.io.IOException;
 
 public class MorpionApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MorpionApp.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MorpionApp.class.getResource("morpion.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        stage.setTitle("Jeu du Morpion");
+        stage.setScene(scene);;
         stage.show();
+
+        Stage modalDialog = new Stage(StageStyle.UNDECORATED);
+        modalDialog.initModality(Modality.WINDOW_MODAL);
+        modalDialog.initOwner(stage);
+
+        FXMLLoader fxmlRulesLoader = new FXMLLoader(MorpionApp.class.getResource("regles.fxml"));
+        Scene sceneRules = new Scene(fxmlRulesLoader.load());
+        modalDialog.setScene(sceneRules);
+
+        Stage botDialog = new Stage(StageStyle.DECORATED);
+        botDialog.initModality(Modality.NONE);
+        botDialog.initOwner(stage);
+
+        FXMLLoader fxmlBotLoader = new FXMLLoader(MorpionApp.class.getResource("bot.fxml"));
+        Scene sceneBot = new Scene(fxmlBotLoader.load());
+        botDialog.setScene(sceneBot);
+
+        MorpionController controller = (MorpionController)fxmlLoader.getController();
+        controller.setModalDialog(modalDialog);
+        controller.setBotDialog(botDialog);
+
     }
 
     public static void main(String[] args) {

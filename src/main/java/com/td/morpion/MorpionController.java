@@ -7,8 +7,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.event.Event;
+import javafx.stage.Stage;
 
 public class MorpionController {
+    private Stage modalDialog;
+    private Stage botDialog;
+
     String player1Name = "Player 1";
     String player2Name = "Player 2";
     int PlayerWhoStart = 3;
@@ -16,14 +20,13 @@ public class MorpionController {
     int GameStatus = 0;
     int[][] gameBoard = new int[3][3];
 
-    private void ResetGameBoard() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                gameBoard[i][j] = 0;
-            }
-        }
+    public void setModalDialog(Stage modal) {
+        this.modalDialog = modal;
     }
 
+    public void setBotDialog(Stage bot) {
+        this.botDialog = bot;
+    }
 
     @FXML
     private RadioButton FirstPlayerRadio;
@@ -37,10 +40,19 @@ public class MorpionController {
     @FXML
     private Label StatusLabel;
 
+    private void ResetGameBoard() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                gameBoard[i][j] = 0;
+            }
+        }
+    }
+
     private void StartGame() {
         System.out.println("Starting game");
         GameStatus = 1;
         StatusLabel.setText("C'est parti !");
+        PlayerTurn = PlayerWhoStart;
     }
 
     @FXML
@@ -135,7 +147,7 @@ public class MorpionController {
 
     @FXML
     protected void ShowRules() {
-
+        modalDialog.show();
     }
     @FXML
     protected void ChangePlayerName() {
@@ -143,7 +155,7 @@ public class MorpionController {
     }
     @FXML
     protected void PlayAgainstAI() {
-
+        botDialog.show();
     }
 
     @FXML
