@@ -89,6 +89,7 @@ public class BotController {
     }
 
     private static int evaluate(int[][] board) {
+        // Vérifier les lignes
         for (int row = 0; row < 3; row++) {
             if (board[row][0] == board[row][1] && board[row][1] == board[row][2]) {
                 if (board[row][0] == 2) {
@@ -99,6 +100,7 @@ public class BotController {
             }
         }
 
+        // Vérifier les colonnes
         for (int col = 0; col < 3; col++) {
             if (board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
                 if (board[0][col] == 2) {
@@ -109,6 +111,7 @@ public class BotController {
             }
         }
 
+        // Vérifier les diagonales
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
             if (board[0][0] == 2) {
                 return 10;
@@ -117,6 +120,7 @@ public class BotController {
             }
         }
 
+        // Vérifier les diagonales
         if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
             if (board[0][2] == 2) {
                 return 10;
