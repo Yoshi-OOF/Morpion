@@ -20,6 +20,8 @@ public class BotController {
         MorpionController.PlayerTurn = 1;
     }
 
+    // Fonction getBestMove qui va parcourir le tableau de jeu et retourner le meilleur coup possible pour le bot
+    // en utilisant l'algorithme minimax
     private static int[] getBestMove(int[][] board, int player) {
         int bestValue = (player == 2) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int moveValue;
@@ -43,6 +45,9 @@ public class BotController {
         return new int[]{bestRow, bestCol};
     }
 
+    // Fonction minimax qui va simuler tous les coups possibles pour les deux joueurs et retourner le meilleur score (score maximal ou minimal)
+    // Lorsque c'est le tour du bot, on cherche le score le plus grand possible
+    // Lorsque c'est le tour du joueur, on cherche le score le plus petit possible
     private static int minimax(int[][] board, boolean isMaximizing) {
         if (MorpionController.CheckWin(board)) {
             return isMaximizing ? -1 : 1;
