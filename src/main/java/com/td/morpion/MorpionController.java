@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.event.Event;
 import javafx.stage.Stage;
+import java.util.ArrayList;
 
 public class MorpionController {
     private Stage modalDialog;
@@ -15,10 +16,11 @@ public class MorpionController {
 
     String player1Name = "Player 1";
     String player2Name = "Player 2";
-    int PlayerWhoStart = 3;
-    int PlayerTurn = 1;
-    int GameStatus = 0;
-    int[][] gameBoard = new int[3][3];
+    static boolean player2IsAI = false;
+    static int PlayerWhoStart = 3;
+    static int PlayerTurn = 1;
+    static int GameStatus = 0;
+    static int[][] gameBoard = new int[3][3];
 
     public void setModalDialog(Stage modal) {
         this.modalDialog = modal;
@@ -114,14 +116,34 @@ public class MorpionController {
         int x = ButtonId / 3;
         int y = ButtonId % 3;
 
+        System.out.println("Button clicked: " + x + " " + y);
+        System.out.println("Player turn: " + PlayerTurn);
+        System.out.println("Second player is AI: " + player2IsAI);
+
+        if (player2IsAI && PlayerTurn == 2) {
+            return;
+        }
+
         if (PlayerTurn == 1) {
             theButton.setText("X");
-            PlayerTurn = 2;
             gameBoard[x][y] = 1;
+            PlayerTurn = 2;
+
+            if (player2IsAI) {
+                ArrayList<Button> buttons = new ArrayList<Button>();
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        String buttonId = "button" + i + j;
+                        Button button = (Button) theButton.getScene().lookup("#" + buttonId);
+                        buttons.add(button);
+                    }
+                }
+                BotController.PlayBot(buttons);
+            }
         } else {
             theButton.setText("O");
-            PlayerTurn = 1;
             gameBoard[x][y] = 2;
+            PlayerTurn = 1;
         }
 
         if (CheckWin(gameBoard)) {
