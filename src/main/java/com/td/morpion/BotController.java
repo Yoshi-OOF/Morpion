@@ -12,7 +12,7 @@ public class BotController {
     }
 
     public static void PlayBot(ArrayList<Button> buttons) {
-        int[] bestMove = GetBestMove(MorpionController.gameBoard, 2);
+        int[] bestMove = getBestMove(MorpionController.gameBoard, 2);
         int row = bestMove[0];
         int col = bestMove[1];
         MorpionController.gameBoard[row][col] = 2;
@@ -20,9 +20,9 @@ public class BotController {
         MorpionController.PlayerTurn = 1;
     }
 
-    private static int[] GetBestMove(int[][] board, int player) {
-        int bestScore = (player == 2) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        int currentScore;
+    private static int[] getBestMove(int[][] board, int player) {
+        int bestValue = (player == 2) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+        int moveValue;
         int bestRow = -1;
         int bestCol = -1;
 
@@ -30,106 +30,41 @@ public class BotController {
             for (int col = 0; col < 3; col++) {
                 if (board[row][col] == 0) {
                     board[row][col] = player;
-                    if (player == 2) {
-                        currentScore = minimax(board, 0, false);
-                        if (currentScore > bestScore) {
-                            bestScore = currentScore;
-                            bestRow = row;
-                            bestCol = col;
-                        }
-                    } else {
-                        currentScore = minimax(board, 0, true);
-                        if (currentScore < bestScore) {
-                            bestScore = currentScore;
-                            bestRow = row;
-                            bestCol = col;
-                        }
-                    }
+                    moveValue = minimax(board, false);
                     board[row][col] = 0;
+                    if ((player == 2 && moveValue > bestValue) || (player == 1 && moveValue < bestValue)) {
+                        bestValue = moveValue;
+                        bestRow = row;
+                        bestCol = col;
+                    }
                 }
             }
         }
         return new int[]{bestRow, bestCol};
     }
 
-    private static int minimax(int[][] board, int depth, boolean isMaximizing) {
-        int score = evaluate(board);
-        if (score == 10 || score == -10) {
-            return score;
+    private static int minimax(int[][] board, boolean isMaximizing) {
+        if (MorpionController.CheckWin(board)) {
+            return isMaximizing ? -1 : 1;
         }
         if (!isMovesLeft(board)) {
             return 0;
         }
 
-        if (isMaximizing) {
-            int bestScore = Integer.MIN_VALUE;
-            for (int row = 0; row < 3; row++) {
-                for (int col = 0; col < 3; col++) {
-                    if (board[row][col] == 0) {
-                        board[row][col] = 2;
-                        bestScore = Math.max(bestScore, minimax(board, depth + 1, false));
-                        board[row][col] = 0;
-                    }
-                }
-            }
-            return bestScore;
-        } else {
-            int bestScore = Integer.MAX_VALUE;
-            for (int row = 0; row < 3; row++) {
-                for (int col = 0; col < 3; col++) {
-                    if (board[row][col] == 0) {
-                        board[row][col] = 1;
-                        bestScore = Math.min(bestScore, minimax(board, depth + 1, true));
-                        board[row][col] = 0;
-                    }
-                }
-            }
-            return bestScore;
-        }
-    }
+        int bestScore = isMaximizing ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+        int currentPlayer = isMaximizing ? 2 : 1;
 
-    private static int evaluate(int[][] board) {
-        // Vérifier les lignes
         for (int row = 0; row < 3; row++) {
-            if (board[row][0] == board[row][1] && board[row][1] == board[row][2]) {
-                if (board[row][0] == 2) {
-                    return 10;
-                } else if (board[row][0] == 1) {
-                    return -10;
+            for (int col = 0; col < 3; col++) {
+                if (board[row][col] == 0) {
+                    board[row][col] = currentPlayer;
+                    int score = minimax(board, !isMaximizing);
+                    board[row][col] = 0;
+                    bestScore = isMaximizing ? Math.max(bestScore, score) : Math.min(bestScore, score);
                 }
             }
         }
-
-        // Vérifier les colonnes
-        for (int col = 0; col < 3; col++) {
-            if (board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
-                if (board[0][col] == 2) {
-                    return 10;
-                } else if (board[0][col] == 1) {
-                    return -10;
-                }
-            }
-        }
-
-        // Vérifier les diagonales
-        if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
-            if (board[0][0] == 2) {
-                return 10;
-            } else if (board[0][0] == 1) {
-                return -10;
-            }
-        }
-
-        // Vérifier les diagonales
-        if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
-            if (board[0][2] == 2) {
-                return 10;
-            } else if (board[0][2] == 1) {
-                return -10;
-            }
-        }
-
-        return 0;
+        return bestScore;
     }
 
     private static boolean isMovesLeft(int[][] board) {
