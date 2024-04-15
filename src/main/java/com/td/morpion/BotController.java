@@ -4,24 +4,68 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.util.ArrayList;
+import javafx.scene.control.RadioButton;
 
 public class BotController {
+    static int botDifficulty = 2; // 1 = easy, 2 = hard
+
+    @FXML
+    private RadioButton DifficultyEasyRadio;
+
+    @FXML
+    private RadioButton DifficultyHardRadio;
+
+    @FXML
+    protected void onRadioButtonClicked(Event event) {
+        RadioButton button = (RadioButton) event.getSource();
+        if (button.getId().equals("DifficultyEasyRadio")) {
+            botDifficulty = 1;
+        } else if (button.getId().equals("DifficultyHardRadio")) {
+            botDifficulty = 2;
+        }
+        CheckSelectedRadioButton(botDifficulty);
+    }
+
+    private void CheckSelectedRadioButton(int botDifficulty) {
+        if (botDifficulty == 1) {
+            DifficultyEasyRadio.setSelected(true);
+            DifficultyHardRadio.setSelected(false);
+        } else if (botDifficulty == 2) {
+            DifficultyEasyRadio.setSelected(false);
+            DifficultyHardRadio.setSelected(true);
+        }
+    }
+
     @FXML
     protected void onActiveBot(Event event) {
         MorpionController.player2IsAI = true;
     }
 
     public static void PlayBot(ArrayList<Button> buttons) {
-        int[] bestMove = getBestMove(MorpionController.gameBoard, 2);
-        int row = bestMove[0];
-        int col = bestMove[1];
-        // Vérifier si row, col est bien un index valide dans [3][3]
-        if (row < 0 || row >= 3 || col < 0 || col >= 3) {
-            return;
+        if (botDifficulty == 1) {
+            // Le bot joue aléatoirement
+            int[] move = new int[2];
+            do {
+                move[0] = (int)(Math.random() * 3);
+                move[1] = (int)(Math.random() * 3);
+            } while (MorpionController.gameBoard[move[0]][move[1]] != 0);
+            MorpionController.gameBoard[move[0]][move[1]] = 2;
+            buttons.get(move[0] * 3 + move[1]).setText("O");
+            MorpionController.PlayerTurn = 1;
+        } else if (botDifficulty == 2) {
+            // Le bot joue en utilisant l'algorithme minimax
+            int[] bestMove = getBestMove(MorpionController.gameBoard, 2);
+            int row = bestMove[0];
+            int col = bestMove[1];
+
+            if (row < 0 || row >= 3 || col < 0 || col >= 3) {
+                return;
+            }
+
+            MorpionController.gameBoard[row][col] = 2;
+            buttons.get(row * 3 + col).setText("O");
+            MorpionController.PlayerTurn = 1;
         }
-        MorpionController.gameBoard[row][col] = 2;
-        buttons.get(row * 3 + col).setText("O");
-        MorpionController.PlayerTurn = 1;
     }
 
     // Fonction getBestMove qui va parcourir le tableau de jeu et retourner le meilleur coup possible pour le bot
