@@ -15,6 +15,10 @@ public class BotController {
         int[] bestMove = getBestMove(MorpionController.gameBoard, 2);
         int row = bestMove[0];
         int col = bestMove[1];
+        // Vérifier si row, col est bien un index valide dans [3][3]
+        if (row < 0 || row >= 3 || col < 0 || col >= 3) {
+            return;
+        }
         MorpionController.gameBoard[row][col] = 2;
         buttons.get(row * 3 + col).setText("O");
         MorpionController.PlayerTurn = 1;
