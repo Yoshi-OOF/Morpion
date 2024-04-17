@@ -17,9 +17,10 @@ import java.util.ArrayList;
 public class MorpionController {
     private Stage modalDialog;
     private Stage botDialog;
+    private Stage playerNameDialog;
 
-    String player1Name = "Player 1";
-    String player2Name = "Player 2";
+    static String player1Name = "Player 1";
+    static String player2Name = "Player 2";
     static boolean player2IsAI = false;
     static int PlayerWhoStart = 3;
     static int PlayerTurn = 1;
@@ -33,6 +34,10 @@ public class MorpionController {
 
     public void setBotDialog(Stage bot) {
         this.botDialog = bot;
+    }
+
+    public void setPlayerNameDialog(Stage playerName) {
+        this.playerNameDialog = playerName;
     }
 
     @FXML
@@ -183,7 +188,7 @@ public class MorpionController {
     }
     @FXML
     protected void ChangePlayerName() {
-
+        playerNameDialog.show();
     }
     @FXML
     protected void PlayAgainstAI() {

@@ -34,9 +34,18 @@ public class MorpionApp extends Application {
         Scene sceneBot = new Scene(fxmlBotLoader.load());
         botDialog.setScene(sceneBot);
 
+        Stage playerNameDialog = new Stage(StageStyle.DECORATED);
+        playerNameDialog.initModality(Modality.NONE);
+        playerNameDialog.initOwner(stage);
+
+        FXMLLoader fxmlPlayerNameLoader = new FXMLLoader(MorpionApp.class.getResource("joueurs.fxml"));
+        Scene scenePlayerName = new Scene(fxmlPlayerNameLoader.load());
+        playerNameDialog.setScene(scenePlayerName);
+
         MorpionController controller = (MorpionController)fxmlLoader.getController();
         controller.setModalDialog(modalDialog);
         controller.setBotDialog(botDialog);
+        controller.setPlayerNameDialog(playerNameDialog);
 
     }
 
