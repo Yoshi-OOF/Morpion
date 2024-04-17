@@ -163,13 +163,13 @@ public class MorpionController {
 
         if (CheckWin(gameBoard)) {
             if (PlayerTurn == 1) {
-                StatusLabel.setText(player2Name + " a gagné !");
+                StatusLabel.setText((player2IsAI ? "L'IA" : player2Name)  + " a gagné !");
             } else {
                 StatusLabel.setText(player1Name + " a gagné !");
             }
             GameStatus = 2;
         } else {
-            StatusLabel.setText("C'est à " + (PlayerTurn == 1 ? player1Name : player2Name));
+            StatusLabel.setText("C'est à " + (PlayerTurn == 1 ? player1Name : player2IsAI ? "l'ordinateur" : player2Name));
         }
 
     }

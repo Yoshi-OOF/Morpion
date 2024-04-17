@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.util.ArrayList;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
 
 public class BotController {
     static int botDifficulty = 2; // 1 = easy, 2 = hard
@@ -38,7 +39,8 @@ public class BotController {
 
     @FXML
     protected void onActiveBot(Event event) {
-        MorpionController.player2IsAI = true;
+        ToggleButton button = (ToggleButton) event.getSource();
+        MorpionController.player2IsAI = button.isSelected();
     }
 
     public static void PlayBot(ArrayList<Button> buttons) {
