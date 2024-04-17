@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Modality;
-
 import java.io.IOException;
 
 public class MorpionApp extends Application {
