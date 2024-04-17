@@ -76,7 +76,7 @@
             </GridPane>
             <Button layoutX="278.0" layoutY="50.0" mnemonicParsing="false" onAction="#ResetGame" prefHeight="30.0" prefWidth="185.0" text="Réinitialiser le jeu" />
             <Button layoutX="278.0" layoutY="88.0" mnemonicParsing="false" onAction="#ShowRules" prefHeight="30.0" prefWidth="185.0" text="Voir les règles du jeu" />
-            <Button layoutX="303.0" layoutY="276.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Quitter le jeu" />
+            <Button layoutX="303.0" layoutY="276.0" mnemonicParsing="false" onAction="#CloseGame" prefHeight="30.0" prefWidth="135.0" text="Quitter le jeu" />
             <Text fill="WHITE" layoutX="321.0" layoutY="215.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" text="Qui commence ?" />
             <RadioButton fx:id="FirstPlayerRadio" layoutX="290.0" layoutY="226.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 1" />
             <RadioButton fx:id="SecondPlayerRadio" layoutX="376.0" layoutY="226.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 2" />

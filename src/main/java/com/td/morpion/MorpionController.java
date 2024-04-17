@@ -196,6 +196,11 @@ public class MorpionController {
     }
 
     @FXML
+    protected void CloseGame() {
+        System.exit(0);
+    }
+
+    @FXML
     protected void initialize() {
         CheckSelectedRadioButton(PlayerWhoStart);
         ResetGameBoard();
