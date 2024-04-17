@@ -16,6 +16,7 @@ public class MorpionApp extends Application {
         stage.setTitle("Jeu du Morpion");
         stage.setScene(scene);;
         stage.show();
+        //scene.getStylesheets().add("https://raw.githubusercontent.com/antoniopelusi/JavaFX-Dark-Theme/main/style.css");
 
         Stage modalDialog = new Stage(StageStyle.UNDECORATED);
         modalDialog.initModality(Modality.WINDOW_MODAL);
