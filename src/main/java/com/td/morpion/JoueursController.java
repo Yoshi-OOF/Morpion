@@ -4,8 +4,11 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class JoueursController {
     @FXML
@@ -18,8 +21,10 @@ public class JoueursController {
     private Button ValidateButton;
 
     @FXML
-    private void changePlayerName() {
-        MorpionController.player1Name = player1NameField.getText();
-        MorpionController.player2Name = player2NameField.getText();
+    private void changePlayerName(Event event) {
+        MorpionController.player1Name = Objects.equals(player1NameField.getText(), "") ? "Player 1" : player1NameField.getText();
+        MorpionController.player2Name = Objects.equals(player2NameField.getText(), "") ? "Player 2" : player2NameField.getText();
+        Stage stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }
