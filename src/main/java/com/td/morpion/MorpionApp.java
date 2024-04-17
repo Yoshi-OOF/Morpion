@@ -46,7 +46,6 @@ public class MorpionApp extends Application {
         controller.setModalDialog(modalDialog);
         controller.setBotDialog(botDialog);
         controller.setPlayerNameDialog(playerNameDialog);
-
     }
 
     public static void main(String[] args) {
