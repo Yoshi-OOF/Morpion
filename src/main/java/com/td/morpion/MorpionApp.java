@@ -42,10 +42,20 @@ public class MorpionApp extends Application {
         Scene scenePlayerName = new Scene(fxmlPlayerNameLoader.load());
         playerNameDialog.setScene(scenePlayerName);
 
+        Stage winDialog = new Stage(StageStyle.DECORATED);
+        winDialog.initModality(Modality.NONE);
+        winDialog.initOwner(stage);
+
+        FXMLLoader fxmlWinLoader = new FXMLLoader(MorpionApp.class.getResource("win.fxml"));
+        Scene sceneWin = new Scene(fxmlWinLoader.load());
+        winDialog.setScene(sceneWin);
+
         MorpionController controller = (MorpionController)fxmlLoader.getController();
         controller.setModalDialog(modalDialog);
         controller.setBotDialog(botDialog);
         controller.setPlayerNameDialog(playerNameDialog);
+        controller.setWinDialog(winDialog);
+
     }
 
     public static void main(String[] args) {

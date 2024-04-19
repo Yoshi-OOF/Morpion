@@ -18,6 +18,7 @@ public class MorpionController {
     private Stage modalDialog;
     private Stage botDialog;
     private Stage playerNameDialog;
+    private Stage winDialog;
 
     static String player1Name = "Player 1";
     static String player2Name = "Player 2";
@@ -25,8 +26,11 @@ public class MorpionController {
     static int PlayerWhoStart = 3;
     static int PlayerTurn = 1;
     static int GameStatus = 0;
+    static int Player1Score = 0;
+    static int Player2Score = 0;
+    static String Winner = "";
     static int[][] gameBoard = new int[3][3];
-    ArrayList<Button> buttonsCache = new ArrayList<Button>();
+    static ArrayList<Button> buttonsCache = new ArrayList<Button>();
 
     public void setModalDialog(Stage modal) {
         this.modalDialog = modal;
@@ -38,6 +42,10 @@ public class MorpionController {
 
     public void setPlayerNameDialog(Stage playerName) {
         this.playerNameDialog = playerName;
+    }
+
+    public void setWinDialog(Stage win) {
+        this.winDialog = win;
     }
 
     @FXML
@@ -52,7 +60,8 @@ public class MorpionController {
     @FXML
     private Label StatusLabel;
 
-    private void ResetGameBoard() {
+    public static void ResetGameBoard() {
+        Winner = "";
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 gameBoard[i][j] = 0;
@@ -134,6 +143,12 @@ public class MorpionController {
         int x = ButtonId / 3;
         int y = ButtonId % 3;
 
+        buttonsCache = new ArrayList<Button>();
+        for (int i = 0; i < 9; i++) {
+            Button button = (Button) theButton.getScene().lookup("#Button" + i);
+            buttonsCache.add(button);
+        }
+
         System.out.println("Button clicked: " + x + " " + y);
         System.out.println("Player turn: " + PlayerTurn);
         System.out.println("Second player is AI: " + player2IsAI);
@@ -148,11 +163,6 @@ public class MorpionController {
             PlayerTurn = 2;
 
             if (player2IsAI) {
-                buttonsCache = new ArrayList<Button>();
-                for (int i = 0; i < 9; i++) {
-                    Button button = (Button) theButton.getScene().lookup("#Button" + i);
-                    buttonsCache.add(button);
-                }
                 BotController.PlayBot(buttonsCache);
             }
         } else {
@@ -163,10 +173,13 @@ public class MorpionController {
 
         if (CheckWin(gameBoard)) {
             if (PlayerTurn == 1) {
-                StatusLabel.setText((player2IsAI ? "L'IA" : player2Name)  + " a gagné !");
+                Winner = player2IsAI ? "L'IA" : player2Name;
+                winDialog.show();
             } else {
-                StatusLabel.setText(player1Name + " a gagné !");
+                Winner = player1Name;
+                winDialog.show();
             }
+            StatusLabel.setText(Winner  + " a gagné !");
             GameStatus = 2;
         } else {
             StatusLabel.setText("C'est à " + (PlayerTurn == 1 ? player1Name : player2IsAI ? "l'ordinateur" : player2Name));
