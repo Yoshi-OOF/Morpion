@@ -27,4 +27,5 @@ public class WinController {
         Stage stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         stage.close();
     }
+
 }
