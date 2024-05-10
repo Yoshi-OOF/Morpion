@@ -205,9 +205,11 @@ public class MorpionController {
             }
             if (PlayerTurn == 1) {
                 Winner = player2IsAI ? "L'IA" : player2Name;
+                Player2Score++;
                 winDialog.show();
             } else {
                 Winner = player1Name;
+                Player1Score++;
                 winDialog.show();
             }
             WinController.AnnounceWinner(Winner);
