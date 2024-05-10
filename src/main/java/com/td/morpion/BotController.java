@@ -43,17 +43,20 @@ public class BotController {
         MorpionController.player2IsAI = button.isSelected();
     }
 
+    protected static void RandomPlay(ArrayList<Button> buttons) {
+        int[] move = new int[2];
+        do {
+            move[0] = (int)(Math.random() * 3);
+            move[1] = (int)(Math.random() * 3);
+        } while (MorpionController.gameBoard[move[0]][move[1]] != 0);
+        MorpionController.gameBoard[move[0]][move[1]] = 2;
+        buttons.get(move[0] * 3 + move[1]).setText("O");
+        MorpionController.PlayerTurn = 1;
+    }
+
     public static void PlayBot(ArrayList<Button> buttons) {
         if (botDifficulty == 1) {
-            // Le bot joue aléatoirement
-            int[] move = new int[2];
-            do {
-                move[0] = (int)(Math.random() * 3);
-                move[1] = (int)(Math.random() * 3);
-            } while (MorpionController.gameBoard[move[0]][move[1]] != 0);
-            MorpionController.gameBoard[move[0]][move[1]] = 2;
-            buttons.get(move[0] * 3 + move[1]).setText("O");
-            MorpionController.PlayerTurn = 1;
+            RandomPlay(buttons);
         } else if (botDifficulty == 2) {
             // Le bot joue en utilisant l'algorithme minimax
             int[] bestMove = getBestMove(MorpionController.gameBoard, 2);

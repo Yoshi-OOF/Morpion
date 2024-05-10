@@ -28,6 +28,7 @@ public class MorpionController {
     static int GameStatus = 0;
     static int Player1Score = 0;
     static int Player2Score = 0;
+    static int[] winningLine;
     static String Winner = "";
     static int[][] gameBoard = new int[3][3];
     static ArrayList<Button> buttonsCache = new ArrayList<Button>();
@@ -70,14 +71,34 @@ public class MorpionController {
 
         if (!buttonsCache.isEmpty()) {
             buttonsCache.forEach(button -> button.setText(""));
+            buttonsCache.forEach(button -> button.setStyle(""));
         }
     }
 
-    private void StartGame() {
+    @FXML
+    protected void StartGame(Event event) {
         System.out.println("Starting game");
         GameStatus = 1;
         StatusLabel.setText("C'est parti !");
         PlayerTurn = PlayerWhoStart;
+
+        Button theButton = (Button) event.getSource();
+
+        buttonsCache = new ArrayList<Button>();
+        for (int i = 0; i < 9; i++) {
+            Button button = (Button) theButton.getScene().lookup("#Button" + i);
+            buttonsCache.add(button);
+            System.out.println("Button added to cache: " + button.getId());
+        }
+
+        if (PlayerTurn == 3) {
+            PlayerTurn = (int) (Math.random() * 2) + 1;
+        }
+
+        if (PlayerTurn == 2 && player2IsAI) {
+            BotController.PlayBot(buttonsCache);
+
+        }
     }
 
     @FXML
@@ -103,6 +124,7 @@ public class MorpionController {
         // Vérifier les lignes
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != 0) {
+                winningLine = new int[]{i*3, i*3+1, i*3+2};
                 return true;
             }
         }
@@ -110,15 +132,18 @@ public class MorpionController {
         // Vérifier les colonnes
         for (int j = 0; j < 3; j++) {
             if (board[0][j] == board[1][j] && board[1][j] == board[2][j] && board[0][j] != 0) {
+                winningLine = new int[]{j, j+3, j+6};
                 return true;
             }
         }
 
         // Vérifier les diagonales
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != 0) {
+            winningLine = new int[]{0, 4, 8};
             return true;
         }
         if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != 0) {
+            winningLine = new int[]{2, 4, 6};
             return true;
         }
 
@@ -130,9 +155,9 @@ public class MorpionController {
             return;
         }
 
-        if (GameStatus == 0) {
-            StartGame();
-        }
+        //if (GameStatus == 0) {
+          //  StartGame();
+        //}
 
         if (PlayerTurn == 3) {
             PlayerTurn = (int) (Math.random() * 2) + 1;
@@ -172,6 +197,12 @@ public class MorpionController {
         }
 
         if (CheckWin(gameBoard)) {
+            if (winningLine != null) {
+                for (int index : winningLine) {
+                    Button winningButton = (Button) theButton.getScene().lookup("#Button" + index);
+                    winningButton.setStyle("-fx-background-color: Yellow;");
+                }
+            }
             if (PlayerTurn == 1) {
                 Winner = player2IsAI ? "L'IA" : player2Name;
                 winDialog.show();
@@ -179,6 +210,7 @@ public class MorpionController {
                 Winner = player1Name;
                 winDialog.show();
             }
+            WinController.AnnounceWinner(Winner);
             StatusLabel.setText(Winner  + " a gagné !");
             GameStatus = 2;
         } else {

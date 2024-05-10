@@ -33,6 +33,7 @@ public class MorpionApp extends Application {
         FXMLLoader fxmlBotLoader = new FXMLLoader(MorpionApp.class.getResource("bot.fxml"));
         Scene sceneBot = new Scene(fxmlBotLoader.load());
         botDialog.setScene(sceneBot);
+        botDialog.setTitle("Bot");
 
         Stage playerNameDialog = new Stage(StageStyle.DECORATED);
         playerNameDialog.initModality(Modality.NONE);
@@ -41,6 +42,7 @@ public class MorpionApp extends Application {
         FXMLLoader fxmlPlayerNameLoader = new FXMLLoader(MorpionApp.class.getResource("joueurs.fxml"));
         Scene scenePlayerName = new Scene(fxmlPlayerNameLoader.load());
         playerNameDialog.setScene(scenePlayerName);
+        playerNameDialog.setTitle("Nom des joueurs");
 
         Stage winDialog = new Stage(StageStyle.DECORATED);
         winDialog.initModality(Modality.NONE);
@@ -49,6 +51,7 @@ public class MorpionApp extends Application {
         FXMLLoader fxmlWinLoader = new FXMLLoader(MorpionApp.class.getResource("win.fxml"));
         Scene sceneWin = new Scene(fxmlWinLoader.load());
         winDialog.setScene(sceneWin);
+        winDialog.setTitle("Victoire !");
 
         MorpionController controller = (MorpionController)fxmlLoader.getController();
         controller.setModalDialog(modalDialog);

@@ -8,21 +8,23 @@ import java.util.ArrayList;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class WinController {
     @FXML
     private Button RestartButton;
 
     @FXML
-    private Text StatusText;
+    private static Text StatusText;
 
-    @FXML
-    protected void onRestartGame() {
-        MorpionController.ResetGameBoard();
+    public static void AnnounceWinner(String winner) {
+        StatusText.setText(winner + " a gagné !");
     }
 
     @FXML
-    public void initialize() {
-        StatusText.setText(MorpionController.Winner + " a gagné !");
+    protected void onRestartGame(Event event) {
+        MorpionController.ResetGameBoard();
+        Stage stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }
