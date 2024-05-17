@@ -218,6 +218,7 @@ public class MorpionController {
             StatusLabel.setText(Winner  + " a gagné !");
             winDialog.show();
             winDialogController.AnnounceWinner(Winner);
+            winDialogController.setScoreText(player1Name, player2Name, Player1Score, Player2Score);
             GameStatus = 2;
         } else {
             StatusLabel.setText("C'est à " + (PlayerTurn == 1 ? player1Name : player2IsAI ? "l'ordinateur" : player2Name));

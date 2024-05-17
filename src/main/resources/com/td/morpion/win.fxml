@@ -4,6 +4,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -19,8 +22,8 @@
             <Font name="Bodoni MT" size="35.0" />
          </font>
       </Text>
-      <Button layoutX="96.0" layoutY="178.0" mnemonicParsing="false" onAction="#onRestartGame" text="Recommencer" />
-      <Button layoutX="260.0" layoutY="178.0" mnemonicParsing="false" text="Quitter le jeu" />
+      <Button layoutX="107.0" layoutY="178.0" mnemonicParsing="false" onAction="#onRestartGame" text="Recommencer" />
+      <Button layoutX="251.0" layoutY="178.0" mnemonicParsing="false" text="Quitter le jeu" />
       <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="374.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@5021877.png" />
@@ -36,10 +39,26 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="ScoreText" fill="WHITE" layoutX="75.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1 : 0 points | Joueur 2 : 0 points" textAlignment="CENTER">
+      <Text fx:id="ScoreText" fill="WHITE" layoutX="5.0" layoutY="163.0" strokeType="OUTSIDE" text="Joueur 1 : 0 points | Joueur 2 : 0 points" textAlignment="CENTER" wrappingWidth="437.7413330078124">
          <font>
             <Font size="18.0" />
          </font>
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.40063085540988097">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" blue="0.9968640804290771" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.05919661745429039" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
       </Text>
    </children>
 </AnchorPane>
