@@ -45,11 +45,8 @@ public class MorpionApp extends Application {
         playerNameDialog.setTitle("Nom des joueurs");
 
         Stage winDialog = new Stage(StageStyle.UNDECORATED);
-        winDialog.initModality(Modality.WINDOW_MODAL);
+        winDialog.initModality(Modality.NONE);
         winDialog.initOwner(stage);
-        winDialog.setX(stage.getX() + stage.getWidth() / 2 - 150);
-        winDialog.setY(stage.getY() + stage.getHeight() / 2 - 150);
-
 
         FXMLLoader fxmlWinLoader = new FXMLLoader(MorpionApp.class.getResource("win.fxml"));
         Scene sceneWin = new Scene(fxmlWinLoader.load());

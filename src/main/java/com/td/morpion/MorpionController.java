@@ -125,6 +125,17 @@ public class MorpionController {
         CheckSelectedRadioButton(PlayerWhoStart);
     }
 
+    public static boolean checkIfGameEquality(int[][] board) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static boolean CheckWin(int[][] board) {
         // Vérifier les lignes
         for (int i = 0; i < 3; i++) {
@@ -219,6 +230,9 @@ public class MorpionController {
             winDialog.show();
             winDialogController.AnnounceWinner(Winner);
             winDialogController.setScoreText(player1Name, player2Name, Player1Score, Player2Score);
+            GameStatus = 2;
+        } else if (checkIfGameEquality(gameBoard)) {
+            StatusLabel.setText("Match nul !");
             GameStatus = 2;
         } else {
             StatusLabel.setText("C'est à " + (PlayerTurn == 1 ? player1Name : player2IsAI ? "l'ordinateur" : player2Name));
