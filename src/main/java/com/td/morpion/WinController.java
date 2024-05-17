@@ -15,9 +15,9 @@ public class WinController {
     private Button RestartButton;
 
     @FXML
-    private static Text StatusText;
+    private Text StatusText;
 
-    public static void AnnounceWinner(String winner) {
+    public void AnnounceWinner(String winner) {
         StatusText.setText(winner + " a gagné !");
     }
 

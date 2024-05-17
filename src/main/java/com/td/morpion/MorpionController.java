@@ -19,6 +19,7 @@ public class MorpionController {
     private Stage botDialog;
     private Stage playerNameDialog;
     private Stage winDialog;
+    private WinController winDialogController;
 
     static String player1Name = "Player 1";
     static String player2Name = "Player 2";
@@ -47,6 +48,10 @@ public class MorpionController {
 
     public void setWinDialog(Stage win) {
         this.winDialog = win;
+    }
+
+    public void setWinDialogController(WinController winController) {
+        this.winDialogController = winController;
     }
 
     @FXML
@@ -211,8 +216,8 @@ public class MorpionController {
                 Player1Score++;
             }
             StatusLabel.setText(Winner  + " a gagné !");
-            //winDialog.show();
-            //WinController.AnnounceWinner(Winner);
+            winDialog.show();
+            winDialogController.AnnounceWinner(Winner);
             GameStatus = 2;
         } else {
             StatusLabel.setText("C'est à " + (PlayerTurn == 1 ? player1Name : player2IsAI ? "l'ordinateur" : player2Name));

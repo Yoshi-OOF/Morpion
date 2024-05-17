@@ -52,13 +52,14 @@ public class MorpionApp extends Application {
         Scene sceneWin = new Scene(fxmlWinLoader.load());
         winDialog.setScene(sceneWin);
         winDialog.setTitle("Victoire !");
+        WinController winController = fxmlWinLoader.getController();
 
         MorpionController controller = (MorpionController)fxmlLoader.getController();
         controller.setModalDialog(modalDialog);
         controller.setBotDialog(botDialog);
         controller.setPlayerNameDialog(playerNameDialog);
         controller.setWinDialog(winDialog);
-
+        controller.setWinDialogController(winController);
     }
 
     public static void main(String[] args) {
