@@ -19,8 +19,8 @@
             <Font name="Bodoni MT" size="35.0" />
          </font>
       </Text>
-      <Button layoutX="115.0" layoutY="154.0" mnemonicParsing="false" onAction="#onRestartGame" text="Recommencer" />
-      <Button layoutX="237.0" layoutY="154.0" mnemonicParsing="false" text="Quitter le jeu" />
+      <Button layoutX="96.0" layoutY="178.0" mnemonicParsing="false" onAction="#onRestartGame" text="Recommencer" />
+      <Button layoutX="260.0" layoutY="178.0" mnemonicParsing="false" text="Quitter le jeu" />
       <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="374.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@5021877.png" />
@@ -31,5 +31,15 @@
             <Image url="@5021877.png" />
          </image>
       </ImageView>
+      <Text fill="WHITE" layoutX="153.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voici les scores" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="ScoreText" fill="WHITE" layoutX="75.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1 : 0 points | Joueur 2 : 0 points" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

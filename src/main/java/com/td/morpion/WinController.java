@@ -17,6 +17,9 @@ public class WinController {
     @FXML
     private Text StatusText;
 
+    @FXML
+    private Text ScoreText;
+
     public void AnnounceWinner(String winner) {
         StatusText.setText(winner + " a gagné !");
     }
