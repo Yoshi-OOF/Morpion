@@ -2,6 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,7 +16,7 @@
 
 <VBox alignment="CENTER" prefHeight="340.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.td.morpion.MorpionController">
    <children>
-      <AnchorPane prefHeight="304.0" prefWidth="476.0">
+      <AnchorPane prefHeight="304.0" prefWidth="471.0">
          <children>
             <GridPane gridLinesVisible="true" layoutX="14.0" layoutY="50.0" prefHeight="212.0" prefWidth="247.0">
               <columnConstraints>
@@ -74,22 +77,42 @@
                   </Button>
                </children>
             </GridPane>
-            <Button layoutX="278.0" layoutY="50.0" mnemonicParsing="false" onAction="#ResetGame" prefHeight="30.0" prefWidth="185.0" text="Réinitialiser le jeu" />
-            <Button layoutX="278.0" layoutY="88.0" mnemonicParsing="false" onAction="#ShowRules" prefHeight="30.0" prefWidth="185.0" text="Voir les règles du jeu" />
-            <Button layoutX="303.0" layoutY="276.0" mnemonicParsing="false" onAction="#CloseGame" prefHeight="30.0" prefWidth="135.0" text="Quitter le jeu" />
-            <Text fill="WHITE" layoutX="321.0" layoutY="215.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" text="Qui commence ?" />
-            <RadioButton fx:id="FirstPlayerRadio" layoutX="290.0" layoutY="226.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 1" />
-            <RadioButton fx:id="SecondPlayerRadio" layoutX="376.0" layoutY="226.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 2" />
-            <RadioButton fx:id="RandomPlayerRadio" layoutX="330.0" layoutY="243.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" selected="true" text="Aléatoire" />
-            <Button layoutX="278.0" layoutY="126.0" mnemonicParsing="false" onAction="#ChangePlayerName" prefHeight="30.0" prefWidth="185.0" text="Changer le nom des joueurs" />
-            <Button layoutX="278.0" layoutY="165.0" mnemonicParsing="false" onAction="#PlayAgainstAI" prefHeight="30.0" prefWidth="185.0" text="Jouer contre l'IA" />
-            <Text fill="WHITE" layoutX="196.0" layoutY="19.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" text="Crazy Morpion" />
-            <Label fx:id="StatusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="265.0" prefHeight="30.0" prefWidth="247.0" text="Prêt ?" textAlignment="CENTER">
+            <Text fill="WHITE" layoutX="325.0" layoutY="143.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" text="Qui commence ?" />
+            <RadioButton fx:id="FirstPlayerRadio" layoutX="294.0" layoutY="154.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 1" />
+            <RadioButton fx:id="SecondPlayerRadio" layoutX="380.0" layoutY="154.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 2" />
+            <RadioButton fx:id="RandomPlayerRadio" layoutX="335.0" layoutY="179.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" selected="true" text="Aléatoire" />
+            <Text fill="WHITE" layoutX="197.0" layoutY="32.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" text="Crazy Morpion" />
+            <Label fx:id="StatusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="266.0" prefHeight="30.0" prefWidth="247.0" text="Prêt ?" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="ButtonStart" layoutX="57.0" layoutY="295.0" mnemonicParsing="false" onAction="#StartGame" prefHeight="30.0" prefWidth="162.0" text="Commencer" />
+            <Button fx:id="ButtonStart" layoutX="155.0" layoutY="296.0" mnemonicParsing="false" onAction="#StartGame" prefHeight="30.0" prefWidth="162.0" text="Commencer" />
+            <MenuBar layoutY="-6.0">
+              <menus>
+                  <Menu mnemonicParsing="false" text="Jeu">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#ResetGame" text="Réinitialiser le jeu" />
+                        <MenuItem mnemonicParsing="false" onAction="#CloseGame" text="Quitter le jeu" />
+                     </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Règles">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#ShowRules" text="Voir les règles" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Joueurs">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#ChangePlayerName" text="Nom des joueurs" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Bot">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#PlayAgainstAI" text="Jouer contre l'IA" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
          </children>
       </AnchorPane>
    </children>
