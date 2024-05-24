@@ -1,16 +1,12 @@
 package com.td.morpion;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 import javafx.event.Event;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -65,6 +61,12 @@ public class MorpionController {
 
     @FXML
     private Label StatusLabel;
+
+    @FXML
+    private Button ButtonStart;
+
+    @FXML
+    private GridPane ButtonsGrid;
 
     public static void ResetGameBoard() {
         Winner = "";
@@ -270,6 +272,8 @@ public class MorpionController {
     protected void initialize() {
         CheckSelectedRadioButton(PlayerWhoStart);
         ResetGameBoard();
+        ButtonStart.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 5px;");
+        ButtonsGrid.setStyle("-fx-padding: 10px;");
     }
 
     @FXML

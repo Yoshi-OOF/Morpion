@@ -16,8 +16,8 @@ public class MorpionApp extends Application {
         stage.setTitle("Jeu du Morpion");
         stage.setScene(scene);;
         stage.show();
-        //scene.getStylesheets().add("https://raw.githubusercontent.com/antoniopelusi/JavaFX-Dark-Theme/main/style.css");
-
+        String css = getClass().getResource("/com/td/morpion/dracula.css").toExternalForm();
+        scene.getStylesheets().add(css);
         Stage modalDialog = new Stage(StageStyle.UNDECORATED);
         modalDialog.initModality(Modality.WINDOW_MODAL);
         modalDialog.initOwner(stage);
@@ -25,6 +25,8 @@ public class MorpionApp extends Application {
         FXMLLoader fxmlRulesLoader = new FXMLLoader(MorpionApp.class.getResource("regles.fxml"));
         Scene sceneRules = new Scene(fxmlRulesLoader.load());
         modalDialog.setScene(sceneRules);
+        modalDialog.setTitle("Règles");
+        sceneRules.getStylesheets().add(css);
 
         Stage botDialog = new Stage(StageStyle.DECORATED);
         botDialog.initModality(Modality.NONE);
@@ -34,6 +36,7 @@ public class MorpionApp extends Application {
         Scene sceneBot = new Scene(fxmlBotLoader.load());
         botDialog.setScene(sceneBot);
         botDialog.setTitle("Bot");
+        sceneBot.getStylesheets().add(css);
 
         Stage playerNameDialog = new Stage(StageStyle.DECORATED);
         playerNameDialog.initModality(Modality.NONE);
@@ -43,6 +46,7 @@ public class MorpionApp extends Application {
         Scene scenePlayerName = new Scene(fxmlPlayerNameLoader.load());
         playerNameDialog.setScene(scenePlayerName);
         playerNameDialog.setTitle("Nom des joueurs");
+        scenePlayerName.getStylesheets().add(css);
 
         Stage winDialog = new Stage(StageStyle.UNDECORATED);
         winDialog.initModality(Modality.NONE);
@@ -53,6 +57,7 @@ public class MorpionApp extends Application {
         winDialog.setScene(sceneWin);
         winDialog.setTitle("Victoire !");
         WinController winController = fxmlWinLoader.getController();
+        sceneWin.getStylesheets().add(css);
 
         MorpionController controller = (MorpionController)fxmlLoader.getController();
         controller.setModalDialog(modalDialog);

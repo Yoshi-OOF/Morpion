@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.td.morpion.ReglesController">
+<AnchorPane fx:id="AnchorPaneBg" prefHeight="400.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.td.morpion.ReglesController">
    <children>
       <Text layoutX="218.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Règles du Jeu">
          <font>
@@ -17,7 +16,7 @@
       </Text>
       <VBox layoutX="5.0" layoutY="50.0" prefHeight="346.0" prefWidth="589.0">
          <children>
-            <ScrollPane prefHeight="347.0" prefWidth="589.0">
+            <ScrollPane fx:id="scrollPane" prefHeight="347.0" prefWidth="589.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="552.0" prefWidth="576.0">
                      <children>
@@ -86,7 +85,7 @@
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <Button layoutX="225.0" layoutY="487.0" mnemonicParsing="false" onAction="#onRulesAccept" text="Accepter">
+                        <Button fx:id="RulesAcceptButton" layoutX="225.0" layoutY="487.0" mnemonicParsing="false" onAction="#onRulesAccept" text="Accepter">
                            <font>
                               <Font size="24.0" />
                            </font>

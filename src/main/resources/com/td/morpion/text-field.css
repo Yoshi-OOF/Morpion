@@ -1,0 +1,21 @@
+/* styles.css */
+.text-field {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-highlight-fill: -fx-accent;
+    -fx-highlight-text-fill: white;
+    -fx-background-color: transparent, transparent, transparent, transparent;
+    -fx-background-insets: 0, 0 0 1 0, 0, 0;
+    -fx-background-radius: 0;
+    -fx-border-color: #9400D3;
+    -fx-border-width: 0 0 2 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #9400D3;
+}
+
+.text-field:focused {
+    -fx-prompt-text-fill: transparent;
+    -fx-border-color: #9400D3;
+    -fx-border-width: 0 0 2 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #9400D3;
+}
