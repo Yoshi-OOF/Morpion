@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.event.Event;
 import javafx.scene.layout.GridPane;
@@ -290,9 +291,19 @@ public class MorpionController {
             SecondPlayerRadio.setSelected(false);
         }
     }
-
+    //cupertino-dark.css = Theme1
+    //cupertino-light.css = Theme2
+    //dracula.css = Theme3
+    //nord-dark.css = Theme4
+    //nord-light.css = Theme5
+    //primer-dark.css = Theme6
+    //primer-light.css = Theme7
     @FXML
     protected void handleTheme(ActionEvent event) {
-        // Todo selection de themes
+        MenuItem menuItem = (MenuItem) event.getSource();
+        String theme = menuItem.getId();
+        String css = getClass().getResource("/com/td/morpion/themes/" + theme + ".css").toExternalForm();
+        ButtonsGrid.getScene().getStylesheets().clear();
+        ButtonsGrid.getScene().getStylesheets().add(css);
     }
 }
