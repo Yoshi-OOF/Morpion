@@ -12,9 +12,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="340.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.td.morpion.MorpionController">
+<VBox alignment="CENTER" prefHeight="356.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.td.morpion.MorpionController">
    <children>
       <AnchorPane prefHeight="304.0" prefWidth="471.0">
          <children>
@@ -77,18 +76,16 @@
                   </Button>
                </children>
             </GridPane>
-            <Text fill="WHITE" layoutX="325.0" layoutY="143.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" text="Qui commence ?" />
             <RadioButton fx:id="FirstPlayerRadio" layoutX="294.0" layoutY="154.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 1" />
             <RadioButton fx:id="SecondPlayerRadio" layoutX="380.0" layoutY="154.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" text="Joueur 2" />
             <RadioButton fx:id="RandomPlayerRadio" layoutX="335.0" layoutY="179.0" mnemonicParsing="false" onAction="#onRadioButtonClicked" selected="true" text="Aléatoire" />
-            <Text fill="WHITE" layoutX="197.0" layoutY="32.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" text="Crazy Morpion" />
             <Label fx:id="StatusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="266.0" prefHeight="30.0" prefWidth="247.0" text="Prêt ?" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <Button fx:id="ButtonStart" layoutX="155.0" layoutY="296.0" mnemonicParsing="false" onAction="#StartGame" prefHeight="30.0" prefWidth="162.0" text="Commencer" />
-            <MenuBar layoutY="-6.0">
+            <MenuBar layoutY="-13.0">
               <menus>
                   <Menu mnemonicParsing="false" text="Jeu">
                      <items>
@@ -113,6 +110,16 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="289.0" layoutY="35.0" prefHeight="30.0" prefWidth="162.0" text="Modern Morpion" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="289.0" layoutY="124.0" prefHeight="30.0" prefWidth="162.0" text="Qui commence?" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
