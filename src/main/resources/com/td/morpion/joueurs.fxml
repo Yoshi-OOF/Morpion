@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="172.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.td.morpion.JoueursController">
+<AnchorPane prefHeight="183.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.td.morpion.JoueursController">
    <children>
       <TextField fx:id="player1NameField" layoutX="56.0" layoutY="49.0" promptText="Nom du Joueur 1" />
-      <Label layoutX="62.0" layoutY="14.0" text="Nom des joueurs">
+      <Label alignment="CENTER" layoutX="58.0" layoutY="14.0" prefHeight="26.0" prefWidth="143.0" text="Nom des joueurs" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="player2NameField" layoutX="56.0" layoutY="79.0" promptText="Nom du Joueur 2" />
-      <Button fx:id="ValidateButton" layoutX="85.0" layoutY="117.0" mnemonicParsing="false" onAction="#changePlayerName" prefHeight="25.0" prefWidth="89.0" text="Valider" />
-      <Label layoutX="37.0" layoutY="149.0" text="Si vide, nom par défaut : Joueur 1/2" />
+      <TextField fx:id="player2NameField" layoutX="56.0" layoutY="85.0" promptText="Nom du Joueur 2" />
+      <Button fx:id="ValidateButton" layoutX="85.0" layoutY="124.0" mnemonicParsing="false" onAction="#changePlayerName" prefHeight="25.0" prefWidth="89.0" text="Valider" />
+      <Label layoutX="37.0" layoutY="160.0" text="Si vide, nom par défaut : Joueur 1/2" />
    </children>
 </AnchorPane>

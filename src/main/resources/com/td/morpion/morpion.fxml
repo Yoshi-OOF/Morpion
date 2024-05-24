@@ -108,6 +108,17 @@
                     <MenuItem mnemonicParsing="false" onAction="#PlayAgainstAI" text="Jouer contre l'IA" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Thèmes">
+                     <items>
+                        <MenuItem fx:id="Theme1" mnemonicParsing="false" text="Cupertino Dark" />
+                        <MenuItem fx:id="Theme2" mnemonicParsing="false" text="Cupertino Light" />
+                        <MenuItem fx:id="Theme3" mnemonicParsing="false" text="Dracula" />
+                        <MenuItem fx:id="Theme4" mnemonicParsing="false" text="Nord Dark" />
+                        <MenuItem fx:id="Theme5" mnemonicParsing="false" text="Nord Light" />
+                        <MenuItem fx:id="Theme6" mnemonicParsing="false" text="Primer Dark" />
+                        <MenuItem fx:id="Theme7" mnemonicParsing="false" text="Primer Light" />
+                     </items>
+                  </Menu>
               </menus>
             </MenuBar>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="289.0" layoutY="35.0" prefHeight="30.0" prefWidth="162.0" text="Modern Morpion" textAlignment="CENTER">

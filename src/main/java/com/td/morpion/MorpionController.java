@@ -1,5 +1,6 @@
 package com.td.morpion;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
@@ -288,5 +289,10 @@ public class MorpionController {
             FirstPlayerRadio.setSelected(false);
             SecondPlayerRadio.setSelected(false);
         }
+    }
+
+    @FXML
+    protected void handleTheme(ActionEvent event) {
+        // Todo selection de themes
     }
 }

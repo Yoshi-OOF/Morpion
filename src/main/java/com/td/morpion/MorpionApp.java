@@ -16,7 +16,7 @@ public class MorpionApp extends Application {
         stage.setTitle("Jeu du Morpion");
         stage.setScene(scene);;
         stage.show();
-        String css = getClass().getResource("/com/td/morpion/themes/cupertino-dark.css").toExternalForm();
+        String css = getClass().getResource("/com/td/morpion/themes/dracula.css").toExternalForm();
         scene.getStylesheets().add(css);
         Stage modalDialog = new Stage(StageStyle.UNDECORATED);
         modalDialog.initModality(Modality.WINDOW_MODAL);
