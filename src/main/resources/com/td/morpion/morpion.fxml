@@ -110,13 +110,13 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Thèmes">
                      <items>
-                        <MenuItem fx:id="Theme1" mnemonicParsing="false" text="Cupertino Dark" />
-                        <MenuItem fx:id="Theme2" mnemonicParsing="false" text="Cupertino Light" />
-                        <MenuItem fx:id="Theme3" mnemonicParsing="false" text="Dracula" />
-                        <MenuItem fx:id="Theme4" mnemonicParsing="false" text="Nord Dark" />
-                        <MenuItem fx:id="Theme5" mnemonicParsing="false" text="Nord Light" />
-                        <MenuItem fx:id="Theme6" mnemonicParsing="false" text="Primer Dark" />
-                        <MenuItem fx:id="Theme7" mnemonicParsing="false" text="Primer Light" />
+                        <MenuItem fx:id="Theme1" mnemonicParsing="false" onAction="#handleTheme" text="Cupertino Dark" />
+                        <MenuItem fx:id="Theme2" mnemonicParsing="false" onAction="#handleTheme" text="Cupertino Light" />
+                        <MenuItem fx:id="Theme3" mnemonicParsing="false" onAction="#handleTheme" text="Dracula" />
+                        <MenuItem fx:id="Theme4" mnemonicParsing="false" onAction="#handleTheme" text="Nord Dark" />
+                        <MenuItem fx:id="Theme5" mnemonicParsing="false" onAction="#handleTheme" text="Nord Light" />
+                        <MenuItem fx:id="Theme6" mnemonicParsing="false" onAction="#handleTheme" text="Primer Dark" />
+                        <MenuItem fx:id="Theme7" mnemonicParsing="false" onAction="#handleTheme" text="Primer Light" />
                      </items>
                   </Menu>
               </menus>

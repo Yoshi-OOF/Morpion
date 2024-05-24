@@ -300,9 +300,19 @@ public class MorpionController {
     //primer-light.css = Theme7
     @FXML
     protected void handleTheme(ActionEvent event) {
+        ArrayList<String> themes = new ArrayList<String>();
+        themes.add("cupertino-dark");
+        themes.add("cupertino-light");
+        themes.add("dracula");
+        themes.add("nord-dark");
+        themes.add("nord-light");
+        themes.add("primer-dark");
+        themes.add("primer-light");
+
         MenuItem menuItem = (MenuItem) event.getSource();
-        String theme = menuItem.getId();
-        String css = getClass().getResource("/com/td/morpion/themes/" + theme + ".css").toExternalForm();
+        String theme = menuItem.getId(); // Id = Theme1, Theme2, Theme3, etc.
+        theme = theme.substring(5);
+        String css = getClass().getResource("/com/td/morpion/themes/" + themes.get(Integer.parseInt(theme) - 1) + ".css").toExternalForm();
         ButtonsGrid.getScene().getStylesheets().clear();
         ButtonsGrid.getScene().getStylesheets().add(css);
     }
