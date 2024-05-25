@@ -20,6 +20,10 @@ public class JoueursController {
     @FXML
     private Button ValidateButton;
 
+    /**
+     * Fonction qui permet de changer le nom des joueurs et de fermer la fenêtre
+     * @param event
+     */
     @FXML
     private void changePlayerName(Event event) {
         MorpionController.player1Name = Objects.equals(player1NameField.getText(), "") ? "Player 1" : player1NameField.getText();

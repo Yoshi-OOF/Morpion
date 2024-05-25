@@ -70,6 +70,9 @@ public class MorpionController {
     @FXML
     private GridPane ButtonsGrid;
 
+    /**
+     * Fonction pour réinitialiser le jeu
+     */
     public static void ResetGameBoard() {
         System.out.println("Resetting game");
         GameStatus = 0;
@@ -86,6 +89,13 @@ public class MorpionController {
         }
     }
 
+    /**
+     * Fonction pour démarrer le jeu
+     * -> réinitialise le plateau de jeu et le score
+     * -> détermine le joueur qui commence
+     * -> si le joueur qui commence est l'IA, elle joue
+     * @param event
+     */
     @FXML
     protected void StartGame(Event event) {
         ResetGameBoard();
@@ -114,12 +124,21 @@ public class MorpionController {
         }
     }
 
+    /**
+     * Fonction pour gérer le clic sur un bouton du plateau de jeu
+     * @param event
+     */
     @FXML
     protected void onBoxButtonClicked(Event event) {
         Button button = (Button) event.getSource();
         handleKey(button);
     }
 
+    /**
+     * Fonction pour gérer le clic sur un bouton radio
+     * -> détermine le joueur qui commence
+     * @param event
+     */
     @FXML
     protected void onRadioButtonClicked(Event event) {
         RadioButton button = (RadioButton) event.getSource();
@@ -133,6 +152,10 @@ public class MorpionController {
         CheckSelectedRadioButton(PlayerWhoStart);
     }
 
+    /**
+     * Fonction pour vérifier si il y a égalité
+     * @param board
+     */
     public static boolean checkIfGameEquality(int[][] board) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -144,11 +167,20 @@ public class MorpionController {
         return true;
     }
 
+    /**
+     * Fonction pour vérifier si un joueur a gagné
+     * -> vérifie les lignes, colonnes et diagonales
+     * -> stocke la ligne gagnante
+     * Pour les lignes : 0, 1, 2 | 3, 4, 5 | 6, 7, 8
+     * Pour les colonnes : 0, 3, 6 | 1, 4, 7 | 2, 5, 8
+     * Pour les diagonales : 0, 4, 8 | 2, 4, 6
+     * @param board
+     */
     public static boolean CheckWin(int[][] board) {
         // Vérifier les lignes
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != 0) {
-                winningLine = new int[]{i*3, i*3+1, i*3+2};
+                winningLine = new int[]{i*3, i*3+1, i*3+2}; // 0, 1, 2 | 3, 4, 5 | 6, 7, 8
                 return true;
             }
         }
@@ -156,24 +188,35 @@ public class MorpionController {
         // Vérifier les colonnes
         for (int j = 0; j < 3; j++) {
             if (board[0][j] == board[1][j] && board[1][j] == board[2][j] && board[0][j] != 0) {
-                winningLine = new int[]{j, j+3, j+6};
+                winningLine = new int[]{j, j+3, j+6}; // 0, 3, 6 | 1, 4, 7 | 2, 5, 8
                 return true;
             }
         }
 
         // Vérifier les diagonales
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != 0) {
-            winningLine = new int[]{0, 4, 8};
+            winningLine = new int[]{0, 4, 8}; // 0, 4, 8
             return true;
         }
         if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != 0) {
-            winningLine = new int[]{2, 4, 6};
+            winningLine = new int[]{2, 4, 6}; // 2, 4, 6
             return true;
         }
 
         return false;
     }
 
+    /**
+     * Fonction pour gérer le clic sur un bouton du plateau de jeu
+     * -> vérifie si le bouton a déjà été cliqué
+     * -> vérifie si le joueur qui a cliqué est l'IA
+     * -> vérifie si un joueur a gagné
+     * -> vérifie si il y a égalité
+     * -> change le texte du bouton
+     * -> change le tour du joueur
+     * -> si le joueur 2 est l'IA, elle joue
+     * @param theButton
+     */
     private void handleKey(Button theButton) {
         if (GameStatus == 2) {
             return;
@@ -248,25 +291,45 @@ public class MorpionController {
 
     }
 
+    /**
+     * Fonction pour réinitialiser le plateau de jeu ET le texte du label
+     * -> Appel de la fonction ResetGameBoard
+     *  -> réinitialise le score
+     *  -> réinitialise le plateau de jeu
+     */
     @FXML
     protected void ResetGame() {
         ResetGameBoard();
         StatusLabel.setText("Prêt ?");
     }
 
+    /**
+     * Fonction pour afficher la fenètre modale des règles
+     */
     @FXML
     protected void ShowRules() {
         modalDialog.show();
     }
+
+    /**
+     * Fonction pour afficher la fenètre pour changer le nom des joueurs
+     */
     @FXML
     protected void ChangePlayerName() {
         playerNameDialog.show();
     }
+
+    /**
+     * Fonction pour afficher la fenètre pour jouer contre l'IA
+     */
     @FXML
     protected void PlayAgainstAI() {
         botDialog.show();
     }
 
+    /**
+     * Fonction pour fermer le jeu
+     */
     @FXML
     protected void CloseGame() {
         System.exit(0);
@@ -280,6 +343,10 @@ public class MorpionController {
         ButtonsGrid.setStyle("-fx-padding: 10px;");
     }
 
+    /**
+     * Fonction pour vérifier si un RadioButton est sélectionné
+     * @param selectedRadioButton
+     */
     @FXML
     protected void CheckSelectedRadioButton(int selectedRadioButton) {
         if (selectedRadioButton == 1) {
@@ -293,6 +360,7 @@ public class MorpionController {
             SecondPlayerRadio.setSelected(false);
         }
     }
+
     //cupertino-dark.css = Theme1
     //cupertino-light.css = Theme2
     //dracula.css = Theme3
@@ -300,6 +368,10 @@ public class MorpionController {
     //nord-light.css = Theme5
     //primer-dark.css = Theme6
     //primer-light.css = Theme7
+    /**
+     * Fonction pour changer le thème
+     * @param event
+     */
     @FXML
     protected void handleTheme(ActionEvent event) {
         ArrayList<String> themes = new ArrayList<String>();

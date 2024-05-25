@@ -64,6 +64,7 @@ public class MorpionApp extends Application {
         controller.setBotDialog(botDialog);
         controller.setPlayerNameDialog(playerNameDialog);
         controller.setWinDialog(winDialog);
+        // Permet de récupérer le controller de la fenêtre de victoire pour pouvoir y accéder depuis le controller principal
         controller.setWinDialogController(winController);
     }
 

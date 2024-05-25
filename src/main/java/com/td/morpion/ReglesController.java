@@ -26,6 +26,11 @@ public class ReglesController {
         stage.close();
     }
 
+    /**
+     * Méthode qui est appelée après que le fichier fxml ait été chargé.
+     * Elle permet de définir le style du bouton de validation des règles.
+     * Elle permet également de définir la position du scrollPane à chaque fois que la fenêtre est ouverte.
+     */
     @FXML
     protected void initialize() {
         RulesAcceptButton.setStyle("-fx-background-color: #007e00; -fx-text-fill: #ffffff;");

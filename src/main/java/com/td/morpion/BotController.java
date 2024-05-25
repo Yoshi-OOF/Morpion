@@ -16,6 +16,11 @@ public class BotController {
     @FXML
     private RadioButton DifficultyHardRadio;
 
+    /**
+     * Fonction qui va être appelée lorsqu'on clique sur un des boutons radio pour choisir la difficulté du bot
+     * Elle va changer la valeur de botDifficulty en fonction du bouton cliqué (1 = easy, 2 = hard)
+     * @param event
+     */
     @FXML
     protected void onRadioButtonClicked(Event event) {
         RadioButton button = (RadioButton) event.getSource();
@@ -27,6 +32,10 @@ public class BotController {
         CheckSelectedRadioButton(botDifficulty);
     }
 
+    /**
+     * Fonction qui va vérifier quel bouton radio est sélectionné et déselectionner l'autre
+     * @param botDifficulty
+     */
     private void CheckSelectedRadioButton(int botDifficulty) {
         if (botDifficulty == 1) {
             DifficultyEasyRadio.setSelected(true);
@@ -37,12 +46,22 @@ public class BotController {
         }
     }
 
+    /**
+     * Fonction qui va être appelée lorsqu'on clique sur le bouton "Activer le bot"
+     * Elle va changer la valeur de player2IsAI en fonction de si le bouton est sélectionné ou non
+     * @param event
+     */
     @FXML
     protected void onActiveBot(Event event) {
         ToggleButton button = (ToggleButton) event.getSource();
         MorpionController.player2IsAI = button.isSelected();
     }
 
+    /**
+     * Fonction qui va être appelée lorsqu'on clique sur le bouton "Jouer"
+     * Elle va lancer la partie en fonction de si le bot est activé ou non
+     * @param buttons
+     */
     protected static void RandomPlay(ArrayList<Button> buttons) {
         int[] move = new int[2];
         do {
@@ -54,6 +73,12 @@ public class BotController {
         MorpionController.PlayerTurn = 1;
     }
 
+    /**
+     * Fonction qui va être appelée lorsqu'on clique sur le bouton "Jouer"
+     * Elle va lancer la partie en fonction de si le bot est activé ou non
+     * Si le bot est activé, elle va appeler la fonction PlayBot pour que le bot joue
+     * @param buttons
+     */
     public static void PlayBot(ArrayList<Button> buttons) {
         if (botDifficulty == 1) {
             RandomPlay(buttons);
@@ -75,6 +100,7 @@ public class BotController {
 
     // Fonction getBestMove qui va parcourir le tableau de jeu et retourner le meilleur coup possible pour le bot
     // en utilisant l'algorithme minimax
+    // Elle va appeler la fonction minimax pour chaque coup possible et retourner le meilleur coup
     private static int[] getBestMove(int[][] board, int player) {
         int bestValue = (player == 2) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int moveValue;
@@ -125,6 +151,11 @@ public class BotController {
         return bestScore;
     }
 
+    /**
+     * Fonction qui va vérifier s'il reste des coups possibles
+     * @param board
+     * @return
+     */
     private static boolean isMovesLeft(int[][] board) {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
