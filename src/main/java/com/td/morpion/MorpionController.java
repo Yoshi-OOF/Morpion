@@ -175,10 +175,6 @@ public class MorpionController {
             return;
         }
 
-        //if (GameStatus == 0) {
-          //  StartGame();
-        //}
-
         if (PlayerTurn == 3) {
             PlayerTurn = (int) (Math.random() * 2) + 1;
         }
