@@ -50,4 +50,10 @@ public class WinController {
         ScoreText.setStroke(paint);
     }
 
+    @FXML
+    protected void CloseGame(Event event) {
+        Stage stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
 }

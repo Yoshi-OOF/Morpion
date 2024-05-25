@@ -23,7 +23,7 @@
          </font>
       </Text>
       <Button layoutX="107.0" layoutY="178.0" mnemonicParsing="false" onAction="#onRestartGame" text="Recommencer" />
-      <Button layoutX="251.0" layoutY="178.0" mnemonicParsing="false" text="Quitter le jeu" />
+      <Button layoutX="251.0" layoutY="178.0" mnemonicParsing="false" onAction="#CloseGame" text="Quitter le jeu" />
       <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="374.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@5021877.png" />

@@ -71,6 +71,8 @@ public class MorpionController {
     private GridPane ButtonsGrid;
 
     public static void ResetGameBoard() {
+        System.out.println("Resetting game");
+        GameStatus = 0;
         Winner = "";
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -86,6 +88,8 @@ public class MorpionController {
 
     @FXML
     protected void StartGame(Event event) {
+        ResetGameBoard();
+        ResetGame();
         System.out.println("Starting game");
         GameStatus = 1;
         StatusLabel.setText("C'est parti !");
@@ -198,6 +202,10 @@ public class MorpionController {
             return;
         }
 
+        if (gameBoard[x][y] != 0) {
+            return;
+        }
+
         if (PlayerTurn == 1) {
             theButton.setText("X");
             gameBoard[x][y] = 1;
@@ -242,8 +250,6 @@ public class MorpionController {
 
     @FXML
     protected void ResetGame() {
-        System.out.println("Resetting game");
-        GameStatus = 0;
         ResetGameBoard();
         StatusLabel.setText("Prêt ?");
     }
